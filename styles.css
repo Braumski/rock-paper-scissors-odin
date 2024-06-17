@@ -1,0 +1,29 @@
+body {
+  color: rgb(255, 255, 255);
+  background-color: rgb(35, 41, 56);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rock-paper-scissors {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+#choose {
+  display: block;
+}
+
+.choose {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.counts {
+  display: flex;
+  justify-content: space-between;
+}
