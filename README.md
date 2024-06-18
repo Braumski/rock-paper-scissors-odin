@@ -1,2 +1,2 @@
-Quick Rock Paper Scissors Project
+**Quick Rock Paper Scissors Project
 
