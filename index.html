@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
-  <script defer src="scripts.js"></script>
+  <script defer src="/scripts.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,19 +17,19 @@
     </div>
 
     <div class="choose">
-      <p id="choose">Choose:</p>
-      <button class="rock">Rock</button>
-      <button class="paper">Paper</button>
-      <button class="scissors">Scissors</button>
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
     </div>
 
-    <div class="result">
-
+    <div id="result">
+      Result
     </div>
 
     <div class="counts">
-      <p class="win-count">Games Won:</p>
-      <p class="loss-count">Games Lost:</p>
+      <p id="win-count">Wins: <span id="win-count-num"></span></p>
+      <p id="tie-count">Ties: <span id="tie-count-num"></span></p>
+      <p id="loss-count">Losses: <span id="loss-count-num"></span></p>
     </div>
   </main>
 </body>
