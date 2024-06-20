@@ -30,7 +30,7 @@ function getRandomIntInclusive(min, max) {
 
 function computerChoice() {
   const randNum = getRandomIntInclusive(1, 3);
-  // console.log(randNum);
+  console.log(randNum);
   if (randNum === 1) {
     return "rock";
   } else if (randNum === 2) {
