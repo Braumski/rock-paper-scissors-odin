@@ -1,4 +1,3 @@
-
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
@@ -13,17 +12,15 @@ const winCountEle = document.getElementById("win-count-num");
 const lossCountEle = document.getElementById("loss-count-num");
 const tieCountEle = document.getElementById("tie-count-num");
 
-
 rock.addEventListener("click", () => {
-  playGame("rock")
-})
+  playGame("rock");
+});
 paper.addEventListener("click", () => {
-  playGame("paper")
-
-})
+  playGame("paper");
+});
 scissors.addEventListener("click", () => {
-  playGame("scissors")
-})
+  playGame("scissors");
+});
 
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
@@ -43,86 +40,90 @@ function computerChoice() {
   }
 }
 
+function streakCheck(winLossTie) {
+  switch (winLossTie) {
+    case "win":
+      if (resultEle.textContent.includes("Win")) {
+        winStreak++;
+        console.log(winStreak);
+        resultEle.textContent = `Win x${winStreak}`;
+      } else {
+        winStreak = 1;
+        resultEle.textContent = "Win";
+      }
+      break;
+
+    case "loss":
+      if (resultEle.textContent.includes("Lose")) {
+        loseStreak++;
+        console.log(loseStreak);
+        resultEle.textContent = `Lose x${loseStreak}`;
+      } else {
+        loseStreak = 1;
+        resultEle.textContent = "Lose";
+      }
+      break;
+
+    case "tie":
+      if (resultEle.textContent.includes("Tie")) {
+        tieStreak++;
+        console.log(tieStreak);
+        resultEle.textContent = `Tie x${tieStreak}`;
+      } else {
+        tieStreak = 1;
+        resultEle.textContent = "Tie";
+      }
+      break;
+  }
+}
 
 function playerLose() {
-  resultEle.classList.add("loss")
-  resultEle.classList.remove("win")
-
-  if (resultEle.textContent.includes("Lose")) {
-    loseStreak++;
-    console.log(loseStreak);
-    resultEle.textContent = `Lose x${loseStreak}`;
-  } else {
-    loseStreak = 1;
-    resultEle.textContent = "Lose";
-  }
-
+  resultEle.classList.add("loss");
+  resultEle.classList.remove("win");
+  streakCheck("loss"); // Is it weird to manually feed an arg like this?
+  // I couldnt find a way to make streakCheck change seamlessly with arguments,
+  // so i used switch statements that used slightly different code
+  // I think streakCheck makes this a little more readable.
   lossCount++;
   console.log(`Loss count: ${lossCount}`);
   lossCountEle.textContent = lossCount;
 }
 
 function playerWin() {
-  resultEle.classList.add("win")
-  resultEle.classList.remove("loss")
-
-  if (resultEle.textContent.includes("Win")) {
-    winStreak++;
-    console.log(winStreak);
-    resultEle.textContent = `Win x${winStreak}`;
-  } else {
-    winStreak = 1;
-    resultEle.textContent = "Win";
-  }
-
+  resultEle.classList.add("win");
+  resultEle.classList.remove("loss");
+  streakCheck("win");
   winCount++;
-  console.log(`Win count: ${winCount}`)
+  console.log(`Win count: ${winCount}`);
   winCountEle.textContent = winCount;
 }
 
-
 function tie() {
   resultEle.classList.remove("win", "loss");
-
-  if (resultEle.textContent.includes("Tie")) {
-    tieStreak++;
-    console.log(tieStreak);
-    resultEle.textContent = `Tie x${tieStreak}`;
-  } else {
-    tieStreak = 1;
-    resultEle.textContent = "Tie";
-  }
-
-  tieCount++
-  console.log(`Tie count: ${tieCount}`)
+  streakCheck("tie");
+  tieCount++;
+  console.log(`Tie count: ${tieCount}`);
   tieCountEle.textContent = tieCount;
-
 }
 
-
 function playGame(playerChoice) {
-
   const computerChoiceResult = computerChoice();
   console.log(`You: ${playerChoice}
-Computer: ${computerChoiceResult}`
-  );
+Computer: ${computerChoiceResult}`);
+
   if (playerChoice === computerChoiceResult) {
     tie();
-
   } else if (playerChoice === "rock" && computerChoiceResult === "paper") {
     playerLose();
   } else if (playerChoice === "rock" && computerChoiceResult === "scissors") {
     playerWin();
-
   } else if (playerChoice === "paper" && computerChoiceResult === "rock") {
     playerWin();
   } else if (playerChoice === "paper" && computerChoiceResult === "scissors") {
     playerLose();
-
   } else if (playerChoice === "scissors" && computerChoiceResult === "paper") {
     playerWin();
   } else if (playerChoice === "scissors" && computerChoiceResult === "rock") {
     playerLose();
   }
-
 }
